@@ -13,18 +13,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!trigger || !content) return;
 
-    // Inicializa o primeiro item aberto se já estiver marcado como aria-expanded="true"
-    if (item.getAttribute('aria-expanded') === 'true') {
+    // Inicializa o primeiro item aberto se já estiver marcado como data-open="true"
+    if (item.getAttribute('data-open') === 'true') {
       content.style.maxHeight = content.scrollHeight + 'px';
     }
 
     trigger.addEventListener('click', () => {
-      const isExpanded = item.getAttribute('aria-expanded') === 'true';
+      const isExpanded = item.getAttribute('data-open') === 'true';
 
       // Fecha os demais itens para manter a leitura limpa no mobile
       faqItems.forEach((otherItem) => {
         if (otherItem !== item) {
-          otherItem.setAttribute('aria-expanded', 'false');
+          otherItem.setAttribute('data-open', 'false');
           const otherTrigger = otherItem.querySelector('.faq-trigger');
           const otherContent = otherItem.querySelector('.faq-content');
           if (otherTrigger) otherTrigger.setAttribute('aria-expanded', 'false');
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Alterna o estado do item clicado
       const nextState = !isExpanded;
-      item.setAttribute('aria-expanded', String(nextState));
+      item.setAttribute('data-open', String(nextState));
       trigger.setAttribute('aria-expanded', String(nextState));
       content.style.maxHeight = nextState ? content.scrollHeight + 'px' : '0px';
     });

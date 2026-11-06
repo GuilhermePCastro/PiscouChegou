@@ -59,11 +59,11 @@ html {
   opacity: 0;
 }
 
-.faq-item[aria-expanded="true"] .faq-content {
+.faq-item[data-open="true"] .faq-content {
   opacity: 1;
 }
 
-.faq-item[aria-expanded="true"] .faq-icon {
+.faq-item[data-open="true"] .faq-icon {
   transform: rotate(180deg);
 }
 
