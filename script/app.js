@@ -89,5 +89,55 @@ document.addEventListener('DOMContentLoaded', () => {
   if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
   }
+
+  // 5. Lightbox para Ampliar as Fotos do Caminhão
+  const lightbox = document.getElementById('image-lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxCaption = document.getElementById('lightbox-caption');
+  const lightboxClose = document.getElementById('lightbox-close');
+  const lightboxTriggers = document.querySelectorAll('[data-lightbox-src]');
+
+  if (lightbox && lightboxImg && lightboxCaption) {
+    const openLightbox = (src, caption) => {
+      lightboxImg.src = src;
+      lightboxCaption.textContent = caption || '';
+      lightbox.classList.remove('hidden');
+      lightbox.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeLightbox = () => {
+      lightbox.classList.add('hidden');
+      lightbox.classList.remove('flex');
+      lightboxImg.src = '';
+      document.body.style.overflow = '';
+    };
+
+    lightboxTriggers.forEach((trigger) => {
+      trigger.addEventListener('click', () => {
+        const src = trigger.getAttribute('data-lightbox-src');
+        const caption = trigger.getAttribute('data-lightbox-caption');
+        if (src) openLightbox(src, caption);
+      });
+    });
+
+    if (lightboxClose) {
+      lightboxClose.addEventListener('click', closeLightbox);
+    }
+
+    // Fecha ao clicar fora da foto (no fundo escuro)
+    lightbox.addEventListener('click', (event) => {
+      if (event.target === lightbox) {
+        closeLightbox();
+      }
+    });
+
+    // Fecha ao pressionar a tecla ESC
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !lightbox.classList.contains('hidden')) {
+        closeLightbox();
+      }
+    });
+  }
 });
 
