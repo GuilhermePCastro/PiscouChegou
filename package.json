@@ -1,0 +1,15 @@
+{
+  "name": "piscou-chegou-landing-page",
+  "version": "1.0.0",
+  "description": "Landing Page de alta conversão para Piscou Chegou - Carretos, Fretes e Pequenas Mudanças em Goiânia, Anápolis e Brasília.",
+  "private": true,
+  "scripts": {
+    "dev": "npx @tailwindcss/cli -i ./css/index.css -o ./css/output.css --watch",
+    "build": "npx @tailwindcss/cli -i ./css/index.css -o ./css/output.css --minify"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.0.0",
+    "tailwindcss": "^4.0.0"
+  }
+}
+
